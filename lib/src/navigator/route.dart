@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:navigation_demo/src/home.dart';
+import 'package:navigation_demo/src/second.dart';
+import 'package:navigation_demo/src/three.dart';
 
 import '../login.dart';
 
@@ -15,12 +17,19 @@ class RoutesNavigator {
 
   static Route routes(BuildContext context, RouteSettings settings) {
     final args = settings.arguments;
-    switch (settings.name) {
-      case login:
-        return MaterialPageRoute(builder: (context) => LoginScreen());
-      case home:
-        return MaterialPageRoute(builder: (_) => HomeScreen());
-    }
-    throw Exception('This route does not exists');
+    return MaterialPageRoute(builder: (context) {
+      switch (settings.name) {
+        case login:
+          return LoginScreen();
+        case home:
+          return HomeScreen(user: args);
+        case second:
+          return SecondScreen();
+        case three :
+          return ThreeScreen();
+        default:
+          return LoginScreen();
+      }
+    });
   }
 }

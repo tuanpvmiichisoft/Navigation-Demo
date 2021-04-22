@@ -18,14 +18,22 @@ class SecondScreen extends StatelessWidget{
                   ModalRoute.withName(RoutesNavigator.home)),
               child: Text("Go three and back to home"),
              ),
+             Text("Navigator.pushNamedAndRemoveUntil() "),
+             Padding(padding: EdgeInsets.all(30)),
              ElevatedButton(
-               onPressed: () => Navigator.pushNamed(context, RoutesNavigator.three),
+               onPressed: () =>
+                   Navigator.pushNamed(context, RoutesNavigator.three).then((
+                       value) => print(value)).catchError((Object error) {
+                     print(error);
+                   }),
                child: Text("Go to three"),
              ),
+             Text("Navigator.pushNamed() "),
            ],
          ),
        ),
      );
   }
+
 
 }

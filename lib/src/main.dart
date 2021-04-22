@@ -20,16 +20,53 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
+      // routes: {
+      //   RoutesNavigator.login: (context) => LoginScreen(),
+      //   RoutesNavigator.home: (context) => HomeScreen(),
+      //   RoutesNavigator.second: (context) => SecondScreen(),
+      //   RoutesNavigator.three: (context) => ThreeScreen()
+      //
+      // },
       home: Scaffold(
         body: Container(
           child: Navigator(
             onGenerateRoute: (RouteSettings settings) => MaterialPageRoute(
-                settings: settings, builder: (context) => _buildBody(settings)),
+                settings: settings,
+                builder: (context) {
+                  switch (settings.name) {
+                    case RoutesNavigator.home:
+                      return HomeScreen(
+                        user: settings.arguments,
+                      );
+                    case RoutesNavigator.second:
+                      return SecondScreen();
+                    case RoutesNavigator.three:
+                      return ThreeScreen();
+                    default:
+                      return LoginScreen();
+                  }
+                }),
             observers: [NavigatorObserverHome()],
           ),
         ),
       ),
-      // onGenerateRoute: (settings) => RoutesNavigator.routes(context, settings),
+      onGenerateRoute: (settings) => MaterialPageRoute(
+          settings: settings,
+          builder: (context) {
+            switch (settings.name) {
+              case RoutesNavigator.home:
+                return HomeScreen(
+                  user: settings.arguments,
+                );
+              case RoutesNavigator.second:
+                return SecondScreen();
+              case RoutesNavigator.three:
+                return ThreeScreen();
+              default:
+                return LoginScreen();
+            }
+          }),
+      navigatorObservers: [NavigatorObserverHome()],
     );
   }
 

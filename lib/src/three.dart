@@ -17,6 +17,10 @@ class ThreeScreen extends StatelessWidget{
               child: Text("Back"),
             ),
             ElevatedButton(
+              onPressed: () => Navigator.pop(context,"Pop send data"),
+              child: Text("Pop with Data"),
+            ),
+            ElevatedButton(
               onPressed: () => Navigator.popUntil(context, ModalRoute.withName(RoutesNavigator.home)),
               child: Text("Go to home"),
             ),

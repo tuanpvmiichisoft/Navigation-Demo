@@ -14,4 +14,10 @@ class NavigatorObserverHome extends RouteObserver<MaterialPageRoute<dynamic>> {
     print("PUSH : route : ${route?.settings?.name} , previousRoute : ${previousRoute?.settings?.name}");
 
   }
+
+  @override
+  void didReplace({Route newRoute, Route oldRoute}) {
+    super.didReplace(newRoute: newRoute, oldRoute: oldRoute);
+    print("REPLACE : newRoute : ${newRoute?.settings?.name} , oldRoute : ${oldRoute?.settings?.name}");
+  }
 }
